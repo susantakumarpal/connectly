@@ -41,7 +41,7 @@ The API uses Django session authentication and CSRF tokens. The React client get
 
 ## Structure
 
-- `socialportal/` – project settings, root URLs, and React shell
+- `connectly/` – project settings, root URLs, and React shell
 - `core/` – models, forms, API, admin, and server-rendered legacy views
 - `frontend/src/` – React app and Tailwind styles
 - `static/app/` – Vite production build served by Django

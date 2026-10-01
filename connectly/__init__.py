@@ -1,0 +1,1 @@
+"""Connectly Django project package."""

@@ -38,7 +38,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "socialportal.urls"
+ROOT_URLCONF = "connectly.urls"
 
 TEMPLATES = [
     {
@@ -56,7 +56,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "socialportal.wsgi.application"
+WSGI_APPLICATION = "connectly.wsgi.application"
 
 DATABASES = {
     "default": {
