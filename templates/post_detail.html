@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}Post · Connectly{% endblock %}
+{% block content %}
+{% include '_post.html' %}
+
+<div class="card">
+  <div class="card-body">
+    <h6 class="mb-3">Comments ({{ post.comments.count }})</h6>
+    {% for c in post.comments.all %}
+      <div class="d-flex mb-3">
+        <a href="{% url 'profile' c.author.username %}" class="me-2">
+          {% include '_avatar.html' with u=c.author size='avatar-sm' %}
+        </a>
+        <div>
+          <a class="plain fw-semibold" href="{% url 'profile' c.author.username %}">@{{ c.author.username }}</a>
+          <span class="text-muted small ms-1">{{ c.created_at|timesince }} ago</span>
+          <div>{{ c.text }}</div>
+        </div>
+      </div>
+    {% empty %}
+      <p class="text-muted">No comments yet. Be the first!</p>
+    {% endfor %}
+
+    <form method="post" class="d-flex gap-2 mt-3">
+      {% csrf_token %}
+      <div class="flex-grow-1">{{ form.text }}</div>
+      <button class="btn btn-primary">Send</button>
+    </form>
+    {{ form.text.errors }}
+  </div>
+</div>
+{% endblock %}

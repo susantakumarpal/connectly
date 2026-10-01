@@ -1,0 +1,36 @@
+<div class="card mb-3">
+  <div class="card-body">
+    <div class="d-flex align-items-center mb-2">
+      <a href="{% url 'profile' post.author.username %}" class="me-2">
+        {% include '_avatar.html' with u=post.author size='' %}
+      </a>
+      <div>
+        <a class="plain fw-semibold" href="{% url 'profile' post.author.username %}">@{{ post.author.username }}</a>
+        <div class="text-muted small">{{ post.created_at|timesince }} ago</div>
+      </div>
+      {% if post.author == request.user %}
+      <form method="post" action="{% url 'delete_post' post.pk %}" class="ms-auto" onsubmit="return confirm('Delete this post?');">
+        {% csrf_token %}
+        <button class="btn btn-sm btn-outline-danger" title="Delete"><i class="bi bi-trash"></i></button>
+      </form>
+      {% endif %}
+    </div>
+
+    <p class="post-content mb-2">{{ post.content }}</p>
+    {% if post.image %}<img src="{{ post.image.url }}" alt="" class="post-image mb-2">{% endif %}
+
+    <div class="d-flex align-items-center gap-4 text-muted">
+      <form method="post" action="{% url 'toggle_like' post.pk %}">
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ request.get_full_path }}">
+        <button class="like-btn {% if request.user in post.likes.all %}liked{% endif %}">
+          <i class="bi {% if request.user in post.likes.all %}bi-heart-fill{% else %}bi-heart{% endif %}"></i>
+          {{ post.likes.all|length }}
+        </button>
+      </form>
+      <a class="plain" href="{% url 'post_detail' post.pk %}">
+        <i class="bi bi-chat"></i> {{ post.comments.all|length }}
+      </a>
+    </div>
+  </div>
+</div>

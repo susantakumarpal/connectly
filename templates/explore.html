@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}Explore · Connectly{% endblock %}
+{% block content %}
+<h4 class="mb-3">Explore</h4>
+{% for post in page %}
+  {% include '_post.html' %}
+{% empty %}
+  <p class="text-muted">No posts yet.</p>
+{% endfor %}
+{% include '_pagination.html' %}
+{% endblock %}

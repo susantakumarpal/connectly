@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Edit profile · Connectly{% endblock %}
+{% block content %}
+<div class="card">
+  <div class="card-body">
+    <h4 class="mb-3">Edit profile</h4>
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="mb-3"><label class="form-label">Bio</label>{{ form.bio }}{{ form.bio.errors }}</div>
+      <div class="mb-3"><label class="form-label">Avatar</label>{{ form.avatar }}{{ form.avatar.errors }}</div>
+      <button class="btn btn-primary">Save</button>
+      <a class="btn btn-link" href="{% url 'profile' user.username %}">Cancel</a>
+    </form>
+  </div>
+</div>
+{% endblock %}

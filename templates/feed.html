@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}Home · Connectly{% endblock %}
+{% block content %}
+<div class="card mb-4">
+  <div class="card-body">
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="mb-2">{{ form.content }}</div>
+      {{ form.content.errors }}
+      <div class="d-flex align-items-center gap-2">
+        <div class="flex-grow-1">{{ form.image }}</div>
+        <button class="btn btn-primary">Post</button>
+      </div>
+      {{ form.image.errors }}
+    </form>
+  </div>
+</div>
+
+{% for post in page %}
+  {% include '_post.html' %}
+{% empty %}
+  <div class="text-center text-muted py-5">
+    Your feed is empty. Share something or follow people from <a href="{% url 'explore' %}">Explore</a>.
+  </div>
+{% endfor %}
+{% include '_pagination.html' %}
+{% endblock %}

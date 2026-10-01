@@ -1,0 +1,12 @@
+venv/
+.venv/
+venv_old/
+__pycache__/
+*.pyc
+db.sqlite3
+media/
+node_modules/
+frontend/dist/
+frontend/.vite/
+static/app/
+npm-debug.log*
